@@ -1,0 +1,150 @@
+---
+title: "Ford Stat Project"
+author: "Kasthuri Raja"
+date: "2 June 2022"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+```{r}
+Ford <- read.csv(file.choose(), header = T)
+
+```
+
+Attribute Information:
+
+1.model - > Ford Car Brands
+
+2.year - >Production Year
+
+3.price - >Price of car in $
+
+4.transmission - > Automatic,Manual, Semi-Auto
+
+5.mileage -> Number of miles traveled
+
+6.fuel_Type -> Petrol,Diesel,Hybrid,Electric,Other
+
+7.tax -> Annual Tax
+
+8.mpg - > Miles per Gallon
+
+9.engineSize - > Car's Engine Size
+
+```{r}
+dim(Ford)
+head(Ford, n=10)
+tail(Ford)
+str(Ford)
+```
+
+```{r}
+summary(Ford)
+```
+
+
+
+Displaying the values of the selected variables 
+
+
+```{r}
+table(Ford$transmission)
+
+```
+
+```{r}
+table(Ford$model)
+```
+
+```{r}
+table(Ford$fuelType)
+```
+
+Displaying the Chart
+
+In this Chart The Price Has Been Given in Dollars
+```{r}
+
+hist(Ford$price)
+```
+```{r}
+mean(Ford$price)
+```
+In this Chart The mpg Say that How many Mileage does the Car give.for an approximate result, we divide the fuel economy value by 2.352 to get in kilometer per litre.
+
+```{r}
+hist(Ford$mpg)
+```
+
+
+```{r}
+mean(Ford$mpg)
+```
+In this Chart the mileage says that how many miles does the car travelled 
+```{r}
+hist(Ford$mileage)
+```
+```{r}
+hist(Ford$engineSize)
+```
+```{r}
+hist(Ford$year)
+```
+
+
+```{r}
+boxplot(Ford$price~Ford$year)
+```
+
+
+```{r}
+boxplot(Ford$tax)
+```
+```{r}
+
+boxplot(Ford$price ~ Ford$transmission)
+```
+```{r}
+
+boxplot(Ford$mileage)
+```
+```{r}
+
+boxplot(Ford$year)
+```
+```{r}
+
+boxplot(price ~ fuelType ,data = Ford)
+```
+
+```{r}
+barplot(table(Ford$mpg,Ford$fuelType),beside=TRUE)
+```
+
+
+```{r}
+table(Ford$model)
+```
+
+```{r}
+
+barplot(table(Ford$transmission, Ford$fuelType),beside = TRUE,legend.text = rownames(table(Ford$transmission)))
+```
+
+```{r}
+
+barplot(table(Ford$transmission=="Automatic",Ford$model),beside = TRUE)
+```
+
+```{r}
+
+barplot(table(Ford$fuelType),beside = TRUE)
+```
+
+```{r}
+
+Ford_sub<- subset(Ford, model =="Fiesta", select = c("model","transmission","fuelType","price","year","mpg"))
+Ford_sub
+```
+
